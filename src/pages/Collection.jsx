@@ -33,18 +33,18 @@ const Collection = () => {
 
 		if (showSearch && search) {
 			productsCopy = productsCopy.filter((item) =>
-				item.name.toLowerCase().includes(search.toLowerCase())
+				item.name.toLowerCase().includes(search.toLowerCase()),
 			);
 		}
 
 		if (category.length > 0) {
 			productsCopy = productsCopy.filter((item) =>
-				category.includes(item.category)
+				category.includes(item.category),
 			);
 		}
 		if (subCategory.length > 0) {
 			productsCopy = productsCopy.filter((item) =>
-				subCategory.includes(item.subCategory)
+				subCategory.includes(item.subCategory),
 			);
 		}
 		setFilteredProducts(productsCopy);
@@ -95,7 +95,14 @@ const Collection = () => {
 				>
 					<p className='mb-3 text-sm font-medium'>CATEGORY</p>
 					<div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
-						{['Accessories', 'Figurines', 'Home Décor', 'Drinkware', 'Kitchen', 'Stationery'].map((cat) => (
+						{[
+							'Accessories',
+							'Figurines',
+							'Home Décor',
+							'Drinkware',
+							'Kitchen',
+							'Stationery',
+						].map((cat) => (
 							<p className='flex gap-2' key={cat}>
 								<input
 									type='checkbox'
@@ -115,7 +122,18 @@ const Collection = () => {
 				>
 					<p className='mb-3 text-sm font-medium'>TYPE</p>
 					<div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
-						{['Jewellery', 'Bronze', 'Wall Art', 'Mugs', 'Serveware', 'Baskets', 'Travel', 'Bags', 'Candles', 'Pottery'].map((sub) => (
+						{[
+							'Jewellery',
+							'Bronze',
+							'Wall Art',
+							'Mugs',
+							'Serveware',
+							'Baskets',
+							'Travel',
+							'Bags',
+							'Candles',
+							'Pottery',
+						].map((sub) => (
 							<p className='flex gap-2' key={sub}>
 								<input
 									type='checkbox'
@@ -149,7 +167,6 @@ const Collection = () => {
 						<ProductItem
 							key={index}
 							name={item.name}
-							id={item._id}
 							price={item.price}
 							image={item.image}
 						/>

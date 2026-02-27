@@ -5,22 +5,23 @@ import { assets } from '../assets/assets';
 import RelatedProducts from '../components/RelatedProducts';
 
 const Product = () => {
-	const { productId } = useParams();
+	// const { productId } = useParams();
 	const { products, currency, addToCart } = useContext(ShopContext);
 	const [productData, setProductData] = useState(false);
 	const [image, setImage] = useState('');
 	const [size, setSize] = useState('');
 	const [activeTab, setActiveTab] = useState('description');
 
+	const { productName } = useParams();
+
 	const fetchProductData = useCallback(() => {
 		products.map((item) => {
-			if (item._id === productId) {
+			if (item.name.replace(/\s+/g, '-').toLowerCase() === productName) {
 				setProductData(item);
 				setImage(item.image[0]);
-				return null;
 			}
 		});
-	}, [productId, products]);
+	}, [productName, products]);
 
 	useEffect(() => {
 		fetchProductData();
@@ -114,12 +115,15 @@ const Product = () => {
 						<>
 							<p>{productData.description}</p>
 							<p>
-								Each item is carefully inspected for quality before dispatch. Handcrafted products may have slight natural variations — these are not defects, but a mark of authentic craftsmanship.
+								Each item is carefully inspected for quality before dispatch.
+								Handcrafted products may have slight natural variations — these
+								are not defects, but a mark of authentic craftsmanship.
 							</p>
 						</>
 					) : (
 						<p className='text-gray-500 italic'>
-							Customer reviews are coming soon. Be the first to review this product!
+							Customer reviews are coming soon. Be the first to review this
+							product!
 						</p>
 					)}
 				</div>
